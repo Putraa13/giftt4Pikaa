@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Pilih Kado Buat Oliff</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .item {
+            background: #222;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #444;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pilih Kado Buat Oliffff</h1>
+    <div class="grid">
+        <div class="item">
+            <img src="1.jpg" alt="Buket Bunga Mawar">
+            <input type="checkbox" id="kado1" onclick="limitCheckboxes(this)">
+            <label for="kado1">BUKET BUNGA MAWAR</label>
+        </div>
+        <div class="item">
+            <img src="2.jpg" alt="Buket Love Box Gift Card">
+            <input type="checkbox" id="kado2" onclick="limitCheckboxes(this)">
+            <label for="kado2">BUKET LOVE BOX GIFT CARD</label>
+        </div>
+        <div class="item">
+            <img src="3.jpg" alt="Boneka We Bare Bears">
+            <input type="checkbox" id="kado3" onclick="limitCheckboxes(this)">
+            <label for="kado3">BONEKA WE BARE BEARS</label>
+        </div>
+        <div class="item">
+            <img src="4.jpg" alt="Boneka Kucing Miniso">
+            <input type="checkbox" id="kado4" onclick="limitCheckboxes(this)">
+            <label for="kado4">BONEKA KUCING MINISO</label>
+        </div>
+        <div class="item">
+            <img src="5.jpg" alt="Boneka Kucing Pink">
+            <input type="checkbox" id="kado5" onclick="limitCheckboxes(this)">
+            <label for="kado5">BONEKA KUCING PINK</label>
+        </div>
+        <div class="item">
+            <img src="6.jpg" alt="Dried Flower">
+            <input type="checkbox" id="kado6" onclick="limitCheckboxes(this)">
+            <label for="kado6">DRIED FLOWER</label>
+        </div>
+        <div class="item">
+            <img src="7.jpg" alt="Gift Box & Gelang">
+            <input type="checkbox" id="kado7" onclick="limitCheckboxes(this)">
+            <label for="kado7">GIFT BOX & GELANG</label>
+        </div>
+        <div class="item">
+            <!-- tanpa gambar -->
+            <input type="checkbox" id="kado8" onclick="limitCheckboxes(this)">
+            <label for="kado8">SKINCARE (opsional)</label>
+        </div>
+    </div>
+
+    <script>
+        let maxSelection = 4;
+        function limitCheckboxes(checkbox) {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (checkboxes.length > maxSelection) {
+                checkbox.checked = false;
+                alert("Cuma boleh pilih 4 yaa sayangg!");
+            }
+        }
+
+        function sendToWhatsApp() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            let selected = [];
+            checkboxes.forEach(cb => {
+                const label = cb.parentElement.querySelector('label');
+                if (label) selected.push(label.textContent.trim());
+            });
+
+            if (selected.length === 0) {
+                alert("Pilih dulu dongg kadonyyaa sayangg!");
+                return;
+            }
+
+            const message = "Aku mau kado ini yaa sayangg 🥺👉👈 Pilihanku: " + selected.join(', ');
+            const phoneNumber = "6289516131703"; // nomor kamu
+            const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+            window.open(url, "_blank");
+        }
+    </script>
+
+    <div style="margin-top: 30px;">
+        <button onclick="sendToWhatsApp()" style="padding: 15px 30px; font-size: 18px; background-color: #ff69b4; border: none; border-radius: 10px; color: white; cursor: pointer;">
+            mauuuu ituu🥺
+        </button>
+    </div>
+</body>
+</html>
